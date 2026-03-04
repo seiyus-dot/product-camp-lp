@@ -34,9 +34,12 @@ export default function HeroSection() {
           </FadeIn>
 
           <FadeIn delay={200}>
-            <p className="text-[14px] sm:text-[16px] lg:text-[18px] font-bold leading-[1.8] sm:leading-[1.9] text-slate-500 max-w-2xl mx-auto px-4 text-center">
-              AIと対話するだけで、あなたのアイデアが「動くプロダクト」に。<br className="hidden sm:block" />
-              専門知識は一切不要。プロンプトと設計の術だけを<br className="sm:hidden" />身につける超実践型キャンプ。
+            <p className="text-[14px] sm:text-[16px] lg:text-[18px] font-bold leading-[1.8] sm:leading-[1.9] text-slate-700 max-w-2xl mx-auto px-4 text-center">
+              あなたのアイデアが<br />
+              「動くプロダクト」に。<br />
+              専門知識は一切不要。<br />
+              プロンプトと設計の術だけを<br />
+              身につける超実践型キャンプ。
             </p>
           </FadeIn>
         </div>

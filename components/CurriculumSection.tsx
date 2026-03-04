@@ -61,24 +61,13 @@ const day2 = [
     ),
   },
   {
-    time: "13:00-14:00",
+    time: "13:00-15:00",
     phase: "Phase 3",
-    title: "GitHubにアップロード",
-    content: "はじめてのリポジトリ作成。コードを世界へ出す準備を進めます。",
+    title: "GitHub・Vercel公開",
+    content: "リポジトリ作成からVercelでのURL発行まで。自分のアプリに世界中からアクセスできる瞬間です。",
     icon: (
       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-      </svg>
-    ),
-  },
-  {
-    time: "14:00-15:00",
-    phase: "Phase 3",
-    title: "Vercelで世界一速く公開",
-    content: "URLを発行。自分のアプリに世界中からアクセスできる瞬間です。",
-    icon: (
-      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
   },
@@ -139,7 +128,7 @@ function CurriculumItem({ item }: { item: any }) {
         <h4 className="text-base font-black text-slate-950 leading-tight mb-2 group-hover:text-primary transition-colors">
           {item.title}
         </h4>
-        <p className="text-[13px] leading-relaxed text-slate-500 font-medium">
+        <p className="text-[13px] leading-relaxed text-slate-700 font-medium">
           {item.content}
         </p>
       </div>
@@ -149,7 +138,7 @@ function CurriculumItem({ item }: { item: any }) {
 
 export default function CurriculumSection() {
   return (
-    <section id="curriculum" className="relative overflow-hidden bg-white py-32">
+    <section id="curriculum" className="relative overflow-hidden bg-white pt-16 pb-32">
       {/* Background Decor */}
       <div className="absolute inset-0 bg-graph-paper opacity-30 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none" />

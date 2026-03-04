@@ -2,20 +2,20 @@ import FadeIn from "./FadeIn";
 
 const problems = [
   {
-    title: "プログラミングが難しすぎる",
-    description: "文法や環境構築、学習コストの高さに挫折してしまった経験がある。コードで止まってしまう。",
+    title: "プログラミングが\n難しすぎる",
+    description: "文法や環境構築、学習コストの高さに\n挫折してしまった経験がある。\nコードで止まってしまう。",
     num: "01",
     image: "/images/problem-01.png",
   },
   {
-    title: "AIをアプリ開発に繋げられない",
-    description: "AIツールは使っているが、それをどう実際のWebアプリに結びつけていいか分からない。",
+    title: "AIをアプリ開発に\n繋げられない",
+    description: "AIツールは使っているが、\nそれをどう実際のWebアプリに\n結びつけていいか分からない。",
     num: "02",
     image: "/images/problem-02.png",
   },
   {
-    title: "業務のアイデアを形にできない",
-    description: "社内の業務効率化や新規サービスの優れたアイデアはあるが、アウトプットの術がない。",
+    title: "業務のアイデアを\n形にできない",
+    description: "社内の業務効率化や新規サービスの\n優れたアイデアはあるが、\nアウトプットの術がない。",
     num: "03",
     image: "/images/problem-03.png",
   },
@@ -23,7 +23,7 @@ const problems = [
 
 export default function PainPointSection() {
   return (
-    <section className="relative overflow-hidden bg-white py-24 pb-32">
+    <section className="relative overflow-hidden bg-white pt-12 pb-32">
       {/* Soft Paper-like Background */}
       <div className="absolute inset-0 bg-[#fdfdfd] dot-pattern opacity-40 pointer-events-none" />
 
@@ -72,10 +72,10 @@ export default function PainPointSection() {
                         <div className="h-px w-8 bg-slate-200" />
                       </div>
 
-                      <h3 className="mb-3 text-xl font-black text-slate-900 leading-tight">
+                      <h3 className="mb-3 text-xl font-black text-slate-900 leading-tight whitespace-pre-line">
                         {prob.title}
                       </h3>
-                      <p className="text-[14px] leading-relaxed text-slate-500 font-medium">
+                      <p className="text-[14px] leading-relaxed text-slate-700 font-medium whitespace-pre-line">
                         {prob.description}
                       </p>
 
@@ -113,7 +113,9 @@ export default function PainPointSection() {
             <div className="relative inline-block px-10 py-6 transform -rotate-1">
               <div className="absolute inset-0 bg-primary rounded-[20%] skew-x-3 rotate-1 opacity-10" />
               <p className="relative text-lg font-black text-primary-dark tracking-tight leading-relaxed">
-                PRODUCT AI CAMP なら、その悩みすべて
+                PRODUCT AI CAMP なら、
+                <br />
+                その悩みすべて
                 <br />
                 一瞬で解決できます。
               </p>

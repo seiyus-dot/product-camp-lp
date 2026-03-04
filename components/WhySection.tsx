@@ -113,7 +113,7 @@ export default function WhySection() {
                             <span key={lineIndex} className="block">{line}</span>
                           ))}
                         </h3>
-                        <p className="text-[15px] leading-relaxed text-slate-600 font-medium">
+                        <p className="text-[15px] leading-relaxed text-slate-700 font-medium">
                           {feature.description}
                         </p>
                       </div>

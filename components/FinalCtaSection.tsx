@@ -30,7 +30,7 @@ export default function FinalCtaSection() {
             <div className="absolute bottom-0 left-0 -ml-4 -mb-2 h-4 w-12 bg-primary/10 -rotate-12 blur-[1px]" />
           </div>
 
-          <h2 className="mb-10 text-4xl font-black leading-[1.3] tracking-tight text-slate-950">
+          <h2 className="mb-10 text-3xl sm:text-4xl font-black leading-[1.3] tracking-tight text-slate-950">
             わずか2日間で、
             <br />
             <span className="relative inline-block mt-2">
@@ -41,7 +41,7 @@ export default function FinalCtaSection() {
             </span>
           </h2>
 
-          <p className="mx-auto mb-16 text-[15px] font-bold leading-relaxed text-slate-500 max-w-[340px]">
+          <p className="mx-auto mb-16 text-[15px] font-bold leading-relaxed text-slate-700 max-w-[340px]">
             もう、プログラミングの壁で
             <br />
             夢を諦める必要はありません。

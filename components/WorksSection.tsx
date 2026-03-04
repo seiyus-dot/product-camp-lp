@@ -35,11 +35,11 @@ const works = [
   },
   {
     id: "05",
-    tag: "SNS Tool",
-    title: "X自動投稿スケジューラー",
-    description: "寝ている間もAIが最適なタイミングで発信。投稿の質の安定と、運用の自動化を同時に実現します。",
-    image: "/images/concept-01.png",
-    stats: "POSTS 24/7",
+    tag: "Reservation App",
+    title: "ネイルサロン予約アプリ",
+    description: "スタッフやメニューを選び、チャット感覚でLINEから予約完結。顧客管理とスケジュールを自動で同期します。",
+    video: "/videos/salon_demo_169.mp4",
+    stats: "BOOKING 24/7",
   },
 ];
 
@@ -77,26 +77,41 @@ export default function WorksSection() {
                   {/* Device Container */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[40px] border border-slate-200 bg-white shadow-2xl transition-transform duration-1000 group-hover:scale-[1.02]">
                     <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-900/5 to-transparent" />
-                    <img
-                      src={work.image}
-                      alt={work.title}
-                      className="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
-                    />
+                    {work.video ? (
+                      <video
+                        src={work.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                      />
+                    ) : (
+                      <img
+                        src={work.image}
+                        alt={work.title}
+                        className="h-full w-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                      />
+                    )}
 
-                    {/* Technical Placeholder Backdrop */}
-                    <div className="absolute inset-0 bg-graph-paper opacity-40" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5" />
+                    {/* Technical Placeholder Backdrop (Hide for video so it's clear) */}
+                    {!work.video && (
+                      <>
+                        <div className="absolute inset-0 bg-graph-paper opacity-40 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
 
-                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white border border-slate-100 text-primary/40 shadow-sm mb-2">
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <span className="text-[8px] font-mono font-bold text-primary/40 tracking-[0.5em] uppercase">
-                        AI_LOGIC_CONSTRUCTING...
-                      </span>
-                    </div>
+                        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white border border-slate-100 text-primary/40 shadow-sm mb-2">
+                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                          <span className="text-[8px] font-mono font-bold text-primary/40 tracking-[0.5em] uppercase">
+                            AI_LOGIC_CONSTRUCTING...
+                          </span>
+                        </div>
+                      </>
+                    )}
 
                     {/* Stats Badge */}
                     <div className="absolute bottom-6 left-6 z-20">
@@ -124,7 +139,7 @@ export default function WorksSection() {
                   <h3 className="mb-4 text-2xl font-black text-slate-900 leading-tight">
                     {work.title}
                   </h3>
-                  <p className="mx-auto max-w-[320px] text-[15px] leading-relaxed text-slate-500 font-medium">
+                  <p className="mx-auto max-w-[320px] text-[15px] leading-relaxed text-slate-700 font-medium">
                     {work.description}
                   </p>
 

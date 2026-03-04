@@ -137,7 +137,7 @@ export default function OutcomeSection() {
                         <h3 className="mb-3 text-xl font-black text-slate-950">
                           {skill.title}
                         </h3>
-                        <p className="text-[14px] leading-relaxed text-slate-500 font-medium">
+                        <p className="text-[14px] leading-relaxed text-slate-700 font-medium">
                           {skill.description}
                         </p>
                       </div>

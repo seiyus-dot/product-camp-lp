@@ -40,7 +40,7 @@ function FaqAccordion({ item }: { item: FaqItem }) {
             <span className="shrink-0 text-sm font-black text-primary/40 font-mono tracking-tighter">
               A.
             </span>
-            <p className="text-[14px] font-medium leading-relaxed text-slate-600">
+            <p className="text-[14px] font-medium leading-relaxed text-slate-700">
               {item.a}
             </p>
           </div>
