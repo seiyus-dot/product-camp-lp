@@ -26,7 +26,7 @@ export default function HeroSection() {
 
           <FadeIn delay={100}>
             <h1 className="mb-6 mx-auto max-w-4xl text-center">
-              <span className="text-[28px] sm:text-[42px] lg:text-[56px] font-black leading-[1.3] sm:leading-[1.4] tracking-tight text-slate-900 drop-shadow-sm flex flex-col items-center">
+              <span className="text-[clamp(24px,7vw,42px)] md:text-[46px] lg:text-[56px] font-black leading-[1.3] md:leading-[1.4] tracking-tight text-slate-900 drop-shadow-sm flex flex-col items-center">
                 <span>コードを一切書かずに、</span>
                 <span><span className="text-primary pr-1">2日間</span>でアプリを作る。</span>
               </span>
@@ -34,7 +34,7 @@ export default function HeroSection() {
           </FadeIn>
 
           <FadeIn delay={200}>
-            <p className="text-[14.5px] sm:text-[16px] font-bold leading-[1.8] text-slate-500 max-w-xl mx-auto">
+            <p className="text-[clamp(13px,3.8vw,16px)] sm:text-[17px] font-bold leading-[1.8] sm:leading-[1.8] text-slate-500 max-w-xl mx-auto px-4">
               <span className="inline-block">AIと対話するだけで、</span><span className="inline-block">あなたのアイデアが「動くプロダクト」に。</span><br className="hidden sm:block" />
               <span className="inline-block">専門知識は一切不要。</span><span className="inline-block">プロンプトと設計の術だけを</span><span className="inline-block">身につける超実践型キャンプ。</span>
             </p>
@@ -42,9 +42,9 @@ export default function HeroSection() {
         </div>
 
         {/* Illustration Area */}
-        <div className="w-full max-w-3xl relative mt-4 sm:mt-8 mb-6 sm:mb-12">
+        <div className="w-full max-w-4xl relative mt-2 sm:mt-8 mb-4 sm:mb-12">
           <FadeIn delay={300}>
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] flex items-center justify-center">
+            <div className="relative w-full aspect-[5/4] sm:aspect-[16/9] lg:aspect-[21/9] flex items-center justify-center">
               {/* Decorative aura behind illustration */}
               <div className="absolute inset-0 bg-primary/5 blur-[80px] rounded-full scale-[1.3]" />
 
@@ -55,7 +55,7 @@ export default function HeroSection() {
               <img
                 src="/images/hero-illustration.png"
                 alt="AI App Building Illustration"
-                className="relative z-10 w-full h-[120%] sm:h-[130%] object-contain mix-blend-multiply opacity-95 transition-transform duration-1000 ease-in-out hover:scale-105"
+                className="relative z-10 w-full h-[115%] sm:h-[130%] lg:h-[150%] object-contain mix-blend-multiply opacity-95 transition-transform duration-1000 ease-in-out hover:scale-105"
                 style={{
                   animation: 'slow-float 6s ease-in-out infinite',
                   WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%)',
@@ -72,7 +72,7 @@ export default function HeroSection() {
             <div className="flex flex-col items-center gap-5">
               <a
                 href="#apply"
-                className="shimmer-container shadow-2xl shadow-accent/20 inline-flex h-16 w-full sm:w-auto min-w-[320px] items-center justify-center gap-2 rounded-xl bg-accent hover:bg-accent-hover px-10 py-5 text-[17px] lg:text-[18px] font-black text-white transition-all duration-300 hover:scale-[1.02] active:scale-95"
+                className="shimmer-container shadow-2xl shadow-accent/20 inline-flex h-16 w-full sm:w-auto min-w-full sm:min-w-[320px] items-center justify-center gap-2 rounded-xl bg-accent hover:bg-accent-hover px-10 py-5 text-[16px] sm:text-[18px] font-black text-white transition-all duration-300 hover:scale-[1.02] active:scale-95"
               >
                 今すぐ入会する
               </a>
