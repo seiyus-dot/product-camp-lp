@@ -112,15 +112,6 @@ export default function WorksSection() {
                         </div>
                       </>
                     )}
-
-                    {/* Stats Badge */}
-                    <div className="absolute bottom-6 left-6 z-20">
-                      <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/50 shadow-xl">
-                        <span className="font-mono text-[11px] font-bold text-primary tracking-wider">
-                          {work.stats}
-                        </span>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Numbering Background */}
