@@ -112,8 +112,8 @@ export default function PainPointSection() {
           <div className="mt-24 text-center">
             <div className="relative inline-block px-10 py-6 transform -rotate-1">
               <div className="absolute inset-0 bg-primary rounded-[20%] skew-x-3 rotate-1 opacity-10" />
-              <p className="relative text-lg font-black text-primary-dark">
-                AIなら、その悩みすべて
+              <p className="relative text-lg font-black text-primary-dark tracking-tight leading-relaxed">
+                PRODUCT AI CAMP なら、その悩みすべて
                 <br />
                 一瞬で解決できます。
               </p>

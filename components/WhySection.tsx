@@ -2,7 +2,13 @@ import FadeIn from "./FadeIn";
 
 const features = [
   {
-    title: "AIツールの使い方ではなく「作り方」を学ぶ",
+    title: (
+      <>
+        AIツールの使い方ではなく
+        <br />
+        「作り方」を学ぶ
+      </>
+    ),
     description: "プロンプトを入力するだけの作業者ではなく、アプリの構造を定義し、AIを使いこなす「設計者」としての視点を養います。",
     id: "01",
     label: "LEARN HOW TO BUILD",
@@ -16,7 +22,13 @@ const features = [
     image: "/images/concept-02.png",
   },
   {
-    title: "2日目の最後には世界中に公開できる",
+    title: (
+      <>
+        2日目の最後には
+        <br />
+        世界中に公開できる
+      </>
+    ),
     description: "ローカル環境で動くだけでは不十分。GitHubとVercelを使い、その場でURLを発行。世界中からアクセスできる状態にします。",
     id: "03",
     label: "PUBLISH GLOBALLY",
@@ -85,7 +97,7 @@ export default function WhySection() {
                         <div className="relative overflow-hidden rounded-[20px] aspect-[4/3] border-8 border-white shadow-2xl rotate-2 transition-transform group-hover:rotate-0">
                           <img
                             src={feature.image}
-                            alt={feature.title}
+                            alt={feature.label}
                             className="h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
                           />
                         </div>
