@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="antigrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4facfe"/>
+      <stop offset="20%" stop-color="#00f2fe"/>
+      <stop offset="40%" stop-color="#70e2ff"/>
+      <stop offset="60%" stop-color="#54f2f2"/>
+      <stop offset="80%" stop-color="#f8a5c2"/>
+      <stop offset="100%" stop-color="#f7d794"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#antigrad)" d="M50 25 C30 25 10 55 10 85 H28 C28 65 35 48 50 48 C65 48 72 65 72 85 H90 C90 55 70 25 50 25 Z"/>
+</svg>
