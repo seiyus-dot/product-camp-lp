@@ -25,11 +25,10 @@ export default function HeroSection() {
           </FadeIn>
 
           <FadeIn delay={100}>
-            <h1 className="mb-6 mx-auto max-w-4xl">
-              <span className="text-[26px] sm:text-[42px] lg:text-[56px] font-black leading-[1.3] tracking-tight text-slate-900 drop-shadow-sm">
-                <span className="inline-block">コードを一切書かずに、</span>
-                <br />
-                <span className="inline-block"><span className="text-primary pr-1">2日間</span>でアプリを作る。</span>
+            <h1 className="mb-6 mx-auto max-w-4xl text-center">
+              <span className="text-[28px] sm:text-[42px] lg:text-[56px] font-black leading-[1.3] sm:leading-[1.4] tracking-tight text-slate-900 drop-shadow-sm flex flex-col items-center">
+                <span>コードを一切書かずに、</span>
+                <span><span className="text-primary pr-1">2日間</span>でアプリを作る。</span>
               </span>
             </h1>
           </FadeIn>
