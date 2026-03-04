@@ -33,7 +33,7 @@ export default function PainPointSection() {
             <span className="mb-2 text-[10px] font-black tracking-[0.4em] text-slate-400 uppercase">Real Voices</span>
             <div className="h-1 w-12 bg-yellow-400/60 rotate-2" />
           </div>
-          <h2 className="mb-16 text-center text-3xl font-black leading-tight text-slate-900 tracking-tight">
+          <h2 className="mb-16 text-center text-2xl sm:text-3xl font-black leading-tight text-slate-900 tracking-tight">
             こんな「悩み」は、
             <br />
             <span className="relative inline-block mt-2">

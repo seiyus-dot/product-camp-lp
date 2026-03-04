@@ -55,7 +55,7 @@ export default function WhySection() {
             <span className="mb-2 text-[10px] font-black tracking-[0.4em] text-primary uppercase">Our Concept</span>
             <div className="h-1 w-12 bg-primary/20 rotate-1" />
           </div>
-          <h2 className="mb-20 text-center text-3xl font-black leading-tight text-slate-900 tracking-tight">
+          <h2 className="mb-20 text-center text-2xl sm:text-3xl font-black leading-tight text-slate-900 tracking-tight">
             AIに指示するだけで、
             <br />
             <span className="relative inline-block mt-2">
@@ -108,9 +108,9 @@ export default function WhySection() {
                         <span className="mb-4 inline-block font-mono text-[9px] font-bold tracking-[0.3em] text-primary uppercase px-3 py-1 bg-primary/5 rounded-full">
                           {feature.label}
                         </span>
-                        <h3 className="mb-4 text-2xl font-black text-slate-950 leading-tight flex flex-col items-center">
+                        <h3 className="mb-4 text-[18px] sm:text-2xl font-black text-slate-950 leading-tight flex flex-col items-center">
                           {feature.titleLines.map((line, lineIndex) => (
-                            <span key={lineIndex} className="block whitespace-nowrap">{line}</span>
+                            <span key={lineIndex} className="block">{line}</span>
                           ))}
                         </h3>
                         <p className="text-[15px] leading-relaxed text-slate-600 font-medium">

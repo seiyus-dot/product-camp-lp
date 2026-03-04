@@ -14,12 +14,14 @@ import FinalCtaSection from "@/components/FinalCtaSection";
 import FaqSection from "@/components/FaqSection";
 import MidCta from "@/components/MidCta";
 import FloatingCta from "@/components/FloatingCta";
+import Header from "@/components/Header";
 
 import SectionDivider from "@/components/SectionDivider";
 
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
+      <Header />
       {/* Background Enhancements */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 blueprint-grid opacity-[0.4]" />

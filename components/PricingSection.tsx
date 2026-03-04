@@ -56,16 +56,16 @@ export default function PricingSection() {
               </div>
 
               <div className="relative overflow-hidden rounded-sm border-2 border-primary/20 bg-primary/[0.02] p-10 pt-16 shadow-[20px_20px_60px_rgba(0,0,0,0.03)] transition-all duration-500 group-hover:bg-primary/[0.04] group-hover:shadow-[30px_30px_80px_rgba(0,0,0,0.06)]">
-                <div className="flex justify-between items-start mb-10">
+                <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start mb-10">
                   <div>
-                    <h3 className="mb-2 text-2xl font-black text-slate-950 tracking-tight">
+                    <h3 className="mb-2 text-xl sm:text-2xl font-black text-slate-950 tracking-tight">
                       2日間集中講座
                     </h3>
                     <p className="text-[11px] font-bold text-slate-400 tracking-wider">SKILL ACQUISITION</p>
                   </div>
-                  <div className="text-right">
-                    <div className="flex items-baseline gap-1 justify-end">
-                      <span className="font-bebas text-5xl text-primary leading-none">200,000</span>
+                  <div className="sm:text-right">
+                    <div className="flex items-baseline gap-1 sm:justify-end">
+                      <span className="font-bebas text-4xl sm:text-5xl text-primary leading-none">200,000</span>
                       <span className="font-mono text-[10px] font-bold text-slate-300">JPY</span>
                     </div>
                     <p className="text-[9px] text-slate-300 mt-1 uppercase tracking-tighter">Tax Included</p>
@@ -104,19 +104,19 @@ export default function PricingSection() {
               </div>
 
               <div className="relative overflow-hidden rounded-sm border-2 border-slate-900/10 bg-slate-50 p-10 pt-16 shadow-[20px_20px_60px_rgba(0,0,0,0.03)] transition-all duration-500 hover:bg-slate-100/50">
-                <div className="flex justify-between items-start mb-10">
+                <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start mb-10">
                   <div>
-                    <h3 className="mb-2 text-2xl font-black text-slate-950 leading-tight">
+                    <h3 className="mb-2 text-xl sm:text-2xl font-black text-slate-950 leading-tight">
                       サポートコミュニティ
                     </h3>
                     <p className="text-[11px] font-bold text-slate-400 tracking-wider">CONTINUOUS GROWTH</p>
                   </div>
-                  <div className="text-right">
-                    <div className="flex items-baseline gap-1 justify-end text-slate-950">
-                      <span className="font-bebas text-5xl leading-none">10,000</span>
+                  <div className="sm:text-right">
+                    <div className="flex items-baseline gap-1 sm:justify-end text-slate-950">
+                      <span className="font-bebas text-4xl sm:text-5xl leading-none">10,000</span>
                       <span className="font-mono text-[10px] font-bold opacity-40">/ MO</span>
                     </div>
-                    <p className="text-[9px] text-slate-300 mt-1 uppercase tracking-tighter text-right">Graduates Only</p>
+                    <p className="text-[9px] text-slate-300 mt-1 uppercase tracking-tighter sm:text-right">Graduates Only</p>
                   </div>
                 </div>
 
