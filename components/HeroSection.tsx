@@ -26,25 +26,25 @@ export default function HeroSection() {
 
           <FadeIn delay={100}>
             <h1 className="mb-6 mx-auto max-w-4xl text-center">
-              <span className="text-[clamp(24px,7vw,42px)] md:text-[46px] lg:text-[56px] font-black leading-[1.3] md:leading-[1.4] tracking-tight text-slate-900 drop-shadow-sm flex flex-col items-center">
+              <span className="text-[28px] sm:text-[44px] lg:text-[60px] font-black leading-[1.3] lg:leading-[1.4] tracking-tight text-slate-900 drop-shadow-sm flex flex-col items-center">
                 <span>コードを一切書かずに、</span>
-                <span><span className="text-primary pr-1">2日間</span>でアプリを作る。</span>
+                <span><span className="text-primary xl:pr-1">2日間</span>でアプリを作る。</span>
               </span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={200}>
-            <p className="text-[clamp(13px,3.8vw,16px)] sm:text-[17px] font-bold leading-[1.8] sm:leading-[1.8] text-slate-500 max-w-xl mx-auto px-4">
-              <span className="inline-block">AIと対話するだけで、</span><span className="inline-block">あなたのアイデアが「動くプロダクト」に。</span><br className="hidden sm:block" />
-              <span className="inline-block">専門知識は一切不要。</span><span className="inline-block">プロンプトと設計の術だけを</span><span className="inline-block">身につける超実践型キャンプ。</span>
+            <p className="text-[14px] sm:text-[16px] lg:text-[18px] font-bold leading-[1.8] sm:leading-[1.9] text-slate-500 max-w-2xl mx-auto px-4">
+              AIと対話するだけで、あなたのアイデアが「動くプロダクト」に。<br className="hidden sm:block" />
+              専門知識は一切不要。プロンプトと設計の術だけを身につける超実践型キャンプ。
             </p>
           </FadeIn>
         </div>
 
         {/* Illustration Area */}
-        <div className="w-full max-w-4xl relative mt-2 sm:mt-8 mb-4 sm:mb-12">
+        <div className="w-full max-w-5xl relative mt-6 sm:mt-8 mb-4 sm:mb-12">
           <FadeIn delay={300}>
-            <div className="relative w-full aspect-[5/4] sm:aspect-[16/9] lg:aspect-[21/9] flex items-center justify-center">
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-[2/1] flex items-center justify-center">
               {/* Decorative aura behind illustration */}
               <div className="absolute inset-0 bg-primary/5 blur-[80px] rounded-full scale-[1.3]" />
 
@@ -55,7 +55,7 @@ export default function HeroSection() {
               <img
                 src="/images/hero-illustration.png"
                 alt="AI App Building Illustration"
-                className="relative z-10 w-full h-[115%] sm:h-[130%] lg:h-[150%] object-contain mix-blend-multiply opacity-95 transition-transform duration-1000 ease-in-out hover:scale-105"
+                className="relative z-10 w-full h-[150%] sm:h-[130%] lg:h-[160%] object-contain mix-blend-multiply opacity-95 transition-transform duration-1000 ease-in-out hover:scale-[1.03]"
                 style={{
                   animation: 'slow-float 6s ease-in-out infinite',
                   WebkitMaskImage: 'radial-gradient(ellipse at center, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 80%)',
