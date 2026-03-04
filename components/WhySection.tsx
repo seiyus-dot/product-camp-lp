@@ -2,40 +2,40 @@ import FadeIn from "./FadeIn";
 
 const features = [
   {
-    title: (
-      <>
-        AIツールの使い方ではなく
-        <br />
-        「作り方」を学ぶ
-      </>
-    ),
+    titleLines: [
+      "AIツールの使い方ではなく",
+      "「作り方」を学ぶ"
+    ],
     description: "プロンプトを入力するだけの作業者ではなく、アプリの構造を定義し、AIを使いこなす「設計者」としての視点を養います。",
     id: "01",
     label: "LEARN HOW TO BUILD",
     image: "/images/concept-01.png",
   },
   {
-    title: "Webアプリの仕組みを体で理解する",
+    titleLines: [
+      "Webアプリの仕組みを",
+      "体で理解する"
+    ],
     description: "UIの裏側の処理はどうなっているのか？ データはどこに保存されるのか？ 手を動かして作ることで、仕組みが明確に理解できます。",
     id: "02",
     label: "UNDERSTAND SYSTEMS",
     image: "/images/concept-02.png",
   },
   {
-    title: (
-      <>
-        2日目の最後には
-        <br />
-        世界中に公開できる
-      </>
-    ),
+    titleLines: [
+      "2日目の最後には",
+      "世界中に公開できる"
+    ],
     description: "ローカル環境で動くだけでは不十分。GitHubとVercelを使い、その場でURLを発行。世界中からアクセスできる状態にします。",
     id: "03",
     label: "PUBLISH GLOBALLY",
     image: "/images/concept-03.png",
   },
   {
-    title: "AIがあなたの代わりに伴走・構築する",
+    titleLines: [
+      "AIがあなたの代わりに",
+      "伴走・構築する"
+    ],
     description: "コードの書き方が分からなくても、AIがリアルタイムに実装を担当。あなたは設計図を描き、AIにフィードバックするだけです。",
     id: "04",
     label: "AI-DRIVEN DEVELOPMENT",
@@ -108,8 +108,10 @@ export default function WhySection() {
                         <span className="mb-4 inline-block font-mono text-[9px] font-bold tracking-[0.3em] text-primary uppercase px-3 py-1 bg-primary/5 rounded-full">
                           {feature.label}
                         </span>
-                        <h3 className="mb-4 text-2xl font-black text-slate-950 leading-tight">
-                          {feature.title}
+                        <h3 className="mb-4 text-2xl font-black text-slate-950 leading-tight flex flex-col items-center">
+                          {feature.titleLines.map((line, lineIndex) => (
+                            <span key={lineIndex} className="block whitespace-nowrap">{line}</span>
+                          ))}
                         </h3>
                         <p className="text-[15px] leading-relaxed text-slate-600 font-medium">
                           {feature.description}
