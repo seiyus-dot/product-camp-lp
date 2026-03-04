@@ -6,7 +6,7 @@ const works = [
     tag: "Marketing",
     title: "口コミ獲得アプリ",
     description: "来店客にQRコードで口コミ投稿を促し、Googleマップの評価を自然に、かつ劇的に増やす仕組みです。",
-    image: "/images/skill-01.png",
+    image: "/images/gacha_demo.webp",
     stats: "REVIEW UP +240%",
   },
   {
@@ -99,17 +99,6 @@ export default function WorksSection() {
                       <>
                         <div className="absolute inset-0 bg-graph-paper opacity-40 pointer-events-none" />
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 pointer-events-none" />
-
-                        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none gap-2">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white border border-slate-100 text-primary/40 shadow-sm mb-2">
-                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                          </div>
-                          <span className="text-[8px] font-mono font-bold text-primary/40 tracking-[0.5em] uppercase">
-                            AI_LOGIC_CONSTRUCTING...
-                          </span>
-                        </div>
                       </>
                     )}
                   </div>
