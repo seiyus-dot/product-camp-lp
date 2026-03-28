@@ -17,6 +17,7 @@ type FormData = {
   phone: string;
   address: string;
   date: string;
+  paymentMethod: "card" | "bank";
   cardholderName: string;
   agreedToTerms: boolean;
 };
@@ -53,6 +54,7 @@ function FormInner() {
     phone: "",
     address: "",
     date: "",
+    paymentMethod: "card",
     cardholderName: "",
     agreedToTerms: false,
   });
@@ -73,8 +75,10 @@ function FormInner() {
     if (!form.phone.trim()) newErrors.phone = "必須項目です";
     if (!form.address.trim()) newErrors.address = "必須項目です";
     if (!form.date) newErrors.date = "参加日程を選択してください";
-    if (!form.cardholderName.trim()) newErrors.cardholderName = "必須項目です";
-    if (!cardComplete) newErrors.card = "カード情報を入力してください";
+    if (form.paymentMethod === "card") {
+      if (!form.cardholderName.trim()) newErrors.cardholderName = "必須項目です";
+      if (!cardComplete) newErrors.card = "カード情報を入力してください";
+    }
     if (!form.agreedToTerms) newErrors.agreedToTerms = "利用規約への同意が必要です";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -86,51 +90,69 @@ function FormInner() {
 
     setLoading(true);
     try {
-      const res = await fetch("/api/apply", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          address: form.address,
-          date: form.date,
-        }),
-      });
-
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error);
-
-      const cardElement = elements.getElement(CardElement);
-      if (!cardElement) throw new Error("カード情報が取得できませんでした");
-
-      const { error: stripeError } = await stripe.confirmCardPayment(data.clientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: form.cardholderName,
+      if (form.paymentMethod === "bank") {
+        // 銀行振込フロー
+        const res = await fetch("/api/apply-bank", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name,
             email: form.email,
             phone: form.phone,
-            address: { line1: form.address },
+            address: form.address,
+            date: form.date,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+      } else {
+        // クレジットカードフロー
+        const res = await fetch("/api/apply", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            phone: form.phone,
+            address: form.address,
+            date: form.date,
+          }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        const cardElement = elements.getElement(CardElement);
+        if (!cardElement) throw new Error("カード情報が取得できませんでした");
+
+        const { error: stripeError } = await stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: form.cardholderName,
+              email: form.email,
+              phone: form.phone,
+              address: { line1: form.address },
+            },
           },
-        },
-      });
+        });
 
-      if (stripeError) throw new Error(toJapaneseError(stripeError.code, stripeError.message ?? "決済中にエラーが発生しました"));
+        if (stripeError) throw new Error(toJapaneseError(stripeError.code, stripeError.message ?? "決済中にエラーが発生しました"));
 
-      // 決済成功後にメール送信（失敗しても申込は成立）
-      fetch("/api/apply-notify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          phone: form.phone,
-          address: form.address,
-          date: form.date,
-          paymentIntentId: data.paymentIntentId,
-        }),
-      }).catch(() => {/* メール失敗はサイレント */});
+        // 決済成功後にメール送信・シート記録
+        fetch("/api/apply-notify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            phone: form.phone,
+            address: form.address,
+            date: form.date,
+            paymentIntentId: data.paymentIntentId,
+          }),
+        }).catch(() => {});
+      }
 
       setSubmitted(true);
     } catch (err) {
@@ -233,6 +255,21 @@ function FormInner() {
             </div>
           </FormField>
 
+          {/* 6. 支払方法 */}
+          <FormField label="支払方法" required error={errors.paymentMethod}>
+            <div className="space-y-2">
+              <label className={`flex items-center gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-colors ${form.paymentMethod === "card" ? "border-indigo-500 bg-indigo-50" : "border-gray-200 hover:border-indigo-300"}`}>
+                <input type="radio" name="paymentMethod" value="card" checked={form.paymentMethod === "card"} onChange={() => setForm({ ...form, paymentMethod: "card" })} className="accent-indigo-600" />
+                <span className="text-sm text-gray-700 font-medium">クレジットカード</span>
+              </label>
+              <label className={`flex items-center gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-colors ${form.paymentMethod === "bank" ? "border-indigo-500 bg-indigo-50" : "border-gray-200 hover:border-indigo-300"}`}>
+                <input type="radio" name="paymentMethod" value="bank" checked={form.paymentMethod === "bank"} onChange={() => setForm({ ...form, paymentMethod: "bank" })} className="accent-indigo-600" />
+                <span className="text-sm text-gray-700 font-medium">銀行振込</span>
+              </label>
+            </div>
+          </FormField>
+
+          {form.paymentMethod === "card" && (
           <FormField label="カード名義人" required hint="カードに印字された名前（半角ローマ字）" error={errors.cardholderName}>
             <input
               type="text"
@@ -271,6 +308,7 @@ function FormInner() {
               />
             </div>
           </FormField>
+          )}
 
           <div className="pt-2">
             <div className={`rounded-xl border p-4 ${errors.agreedToTerms ? "border-red-300 bg-red-50" : "border-gray-200"}`}>
