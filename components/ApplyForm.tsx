@@ -270,44 +270,46 @@ function FormInner() {
           </FormField>
 
           {form.paymentMethod === "card" && (
-          <FormField label="カード名義人" required hint="カードに印字された名前（半角ローマ字）" error={errors.cardholderName}>
-            <input
-              type="text"
-              placeholder="例：TARO YAMADA"
-              value={form.cardholderName}
-              onChange={(e) => setForm({ ...form, cardholderName: e.target.value.toUpperCase() })}
-              className={inputClass(errors.cardholderName)}
-            />
-          </FormField>
+            <>
+              <FormField label="カード名義人" required hint="カードに印字された名前（半角ローマ字）" error={errors.cardholderName}>
+                <input
+                  type="text"
+                  placeholder="例：TARO YAMADA"
+                  value={form.cardholderName}
+                  onChange={(e) => setForm({ ...form, cardholderName: e.target.value.toUpperCase() })}
+                  className={inputClass(errors.cardholderName)}
+                />
+              </FormField>
 
-          <FormField label="クレジットカード情報" required hint="¥200,000（税込）" error={errors.card}>
-            <div className={`px-4 py-3.5 rounded-xl border transition-colors ${
-              errors.card ? "border-red-300 bg-red-50" : "border-gray-200 bg-white"
-            }`}>
-              <CardElement
-                options={{
-                  style: {
-                    base: {
-                      fontSize: "14px",
-                      color: "#111827",
-                      fontFamily: "-apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif",
-                      "::placeholder": { color: "#9ca3af" },
-                    },
-                    invalid: { color: "#ef4444" },
-                  },
-                  hidePostalCode: true,
-                }}
-                onChange={(e) => {
-                  setCardComplete(e.complete);
-                  if (e.error) {
-                    setErrors((prev) => ({ ...prev, card: e.error!.message }));
-                  } else {
-                    setErrors((prev) => { const n = { ...prev }; delete n.card; return n; });
-                  }
-                }}
-              />
-            </div>
-          </FormField>
+              <FormField label="クレジットカード情報" required hint="¥200,000（税込）" error={errors.card}>
+                <div className={`px-4 py-3.5 rounded-xl border transition-colors ${
+                  errors.card ? "border-red-300 bg-red-50" : "border-gray-200 bg-white"
+                }`}>
+                  <CardElement
+                    options={{
+                      style: {
+                        base: {
+                          fontSize: "14px",
+                          color: "#111827",
+                          fontFamily: "-apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif",
+                          "::placeholder": { color: "#9ca3af" },
+                        },
+                        invalid: { color: "#ef4444" },
+                      },
+                      hidePostalCode: true,
+                    }}
+                    onChange={(e) => {
+                      setCardComplete(e.complete);
+                      if (e.error) {
+                        setErrors((prev) => ({ ...prev, card: e.error!.message }));
+                      } else {
+                        setErrors((prev) => { const n = { ...prev }; delete n.card; return n; });
+                      }
+                    }}
+                  />
+                </div>
+              </FormField>
+            </>
           )}
 
           <div className="pt-2">
@@ -320,7 +322,7 @@ function FormInner() {
                   className="mt-0.5 w-4 h-4 accent-indigo-600"
                 />
                 <span className="text-sm text-gray-700 leading-relaxed">
-                  利用規約およびプライバシーポリシーに同意します
+                  <a href="/terms" target="_blank" className="text-indigo-600 hover:underline">利用規約</a>および<a href="/privacy" target="_blank" className="text-indigo-600 hover:underline">プライバシーポリシー</a>に同意します
                   <span className="text-red-500 ml-1">*</span>
                 </span>
               </label>
