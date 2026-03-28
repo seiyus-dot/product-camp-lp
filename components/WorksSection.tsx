@@ -30,8 +30,10 @@ const works = [
     tag: "UI/UX",
     title: "スワイプ型アンケート",
     description: "直感的に「○ or ✕」で答えるUI。ユーザーを飽きさせず、真剣な回答データを短時間で回収します。",
-    image: "/images/skill-04.png",
+    image: "/images/office_swipe_demo.webp",
     stats: "FINISH RATE 92%",
+    // image fallback if needed
+    // image: "/images/skill-04.png",
   },
   {
     id: "05",
@@ -41,6 +43,7 @@ const works = [
     video: "/videos/salon_demo_169.mp4",
     stats: "BOOKING 24/7",
   },
+
 ];
 
 export default function WorksSection() {
