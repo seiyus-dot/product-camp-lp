@@ -198,7 +198,7 @@ function FormInner() {
             />
           </FormField>
 
-          <FormField label="住所" required hint="契約書の送付先" error={errors.address}>
+          <FormField label="住所" required hint="クラウドサインの契約に使用します" error={errors.address}>
             <input
               type="text"
               placeholder="例：東京都渋谷区〇〇1-2-3"
