@@ -116,7 +116,7 @@ function FormInner() {
         },
       });
 
-      if (stripeError) throw new Error(stripeError.message);
+      if (stripeError) throw new Error(toJapaneseError(stripeError.code, stripeError.message));
 
       setSubmitted(true);
     } catch (err) {
@@ -319,6 +319,26 @@ function FormField({
       {error && <p className="text-red-500 text-xs mt-1.5">{error}</p>}
     </div>
   );
+}
+
+function toJapaneseError(code: string | undefined, fallback: string): string {
+  const map: Record<string, string> = {
+    card_declined:           "カードが拒否されました。カード会社にお問い合わせください",
+    insufficient_funds:      "残高が不足しています",
+    incorrect_number:        "カード番号が正しくありません",
+    invalid_number:          "カード番号が正しくありません",
+    invalid_expiry_month:    "有効期限（月）が正しくありません",
+    invalid_expiry_year:     "有効期限（年）が正しくありません",
+    expired_card:            "カードの有効期限が切れています",
+    incorrect_cvc:           "セキュリティコードが正しくありません",
+    invalid_cvc:             "セキュリティコードが正しくありません",
+    processing_error:        "決済処理中にエラーが発生しました。時間をおいて再度お試しください",
+    do_not_honor:            "カードが使用できません。カード会社にお問い合わせください",
+    lost_card:               "このカードは使用できません",
+    stolen_card:             "このカードは使用できません",
+    call_issuer:             "カード会社への確認が必要です。カード裏面の番号にお問い合わせください",
+  };
+  return (code && map[code]) ?? fallback ?? "決済中にエラーが発生しました。時間をおいて再度お試しください";
 }
 
 function inputClass(error?: string) {
