@@ -13,8 +13,8 @@ function createTransport() {
 const FROM = `"PRODUCT AI CAMP / KINDLER株式会社" <${process.env.GMAIL_USER}>`;
 
 const DATE_LABELS: Record<string, string> = {
-  "apr11-12": "4月11日（土）・12日（日）",
-  "apr25-26": "4月25日（土）・26日（日）",
+  "apr11-12": "4月11日（土）・12日（日）10:00〜17:00",
+  "apr25-26": "4月25日（土）・26日（日）10:00〜17:00",
 };
 
 export interface ApplyMailData {
