@@ -43,12 +43,7 @@ export default function AdminPage() {
       const res = await fetch("/api/admin/confirm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          rowIndex: app.rowIndex,
-          name: app.name,
-          email: app.email,
-          date: app.date,
-        }),
+        body: JSON.stringify({ rowIndex: app.rowIndex, name: app.name, email: app.email, date: app.date }),
       });
       if (!res.ok) throw new Error("失敗しました");
       setMessage(`${app.name} さんに確定メールを送信しました`);
@@ -66,15 +61,23 @@ export default function AdminPage() {
     return "bg-gray-100 text-gray-600";
   };
 
+  const ConfirmButton = ({ app }: { app: Application }) =>
+    app.status === "入金待ち" ? (
+      <button
+        onClick={() => handleConfirm(app)}
+        disabled={confirming === app.rowIndex}
+        className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap"
+      >
+        {confirming === app.rowIndex ? "送信中..." : "入金確認・確定メール送信"}
+      </button>
+    ) : null;
+
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-gray-900">PRODUCT AI CAMP 申込管理</h1>
-          <button
-            onClick={fetchApplications}
-            className="text-sm bg-white border border-gray-200 px-4 py-2 rounded-lg hover:bg-gray-50"
-          >
+          <h1 className="text-xl md:text-2xl font-bold text-gray-900">PRODUCT AI CAMP 申込管理</h1>
+          <button onClick={fetchApplications} className="text-sm bg-white border border-gray-200 px-4 py-2 rounded-lg hover:bg-gray-50">
             更新
           </button>
         </div>
@@ -90,52 +93,75 @@ export default function AdminPage() {
         ) : applications.length === 0 ? (
           <p className="text-gray-500 text-sm">申込データがありません</p>
         ) : (
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm whitespace-nowrap">
-                <thead className="bg-gray-50 border-b border-gray-100">
-                  <tr>
-                    <th className="text-left px-4 py-3 text-gray-600 font-medium">申込日時</th>
-                    <th className="text-left px-4 py-3 text-gray-600 font-medium">氏名</th>
-                    <th className="text-left px-4 py-3 text-gray-600 font-medium">メール</th>
-                    <th className="text-left px-4 py-3 text-gray-600 font-medium">電話</th>
-                    <th className="text-left px-4 py-3 text-gray-600 font-medium">日程</th>
-                    <th className="text-left px-4 py-3 text-gray-600 font-medium">支払方法</th>
-                    <th className="text-left px-4 py-3 text-gray-600 font-medium">ステータス</th>
-                    <th className="text-left px-4 py-3 text-gray-600 font-medium">アクション</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {applications.map((app) => (
-                    <tr key={app.rowIndex} className="border-b border-gray-50 hover:bg-gray-50">
-                      <td className="px-4 py-3 text-gray-500">{app.createdAt}</td>
-                      <td className="px-4 py-3 font-medium text-gray-900">{app.name}</td>
-                      <td className="px-4 py-3 text-gray-600">{app.email}</td>
-                      <td className="px-4 py-3 text-gray-600">{app.phone}</td>
-                      <td className="px-4 py-3 text-gray-600">{DATE_LABELS[app.date] ?? app.date}</td>
-                      <td className="px-4 py-3 text-gray-600">{app.paymentMethod}</td>
-                      <td className="px-4 py-3">
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColor(app.status)}`}>
-                          {app.status}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3">
-                        {app.status === "入金待ち" && (
-                          <button
-                            onClick={() => handleConfirm(app)}
-                            disabled={confirming === app.rowIndex}
-                            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs px-3 py-1.5 rounded-lg transition-colors"
-                          >
-                            {confirming === app.rowIndex ? "送信中..." : "入金確認・確定メール送信"}
-                          </button>
-                        )}
-                      </td>
+          <>
+            {/* PC: テーブル */}
+            <div className="hidden md:block bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm whitespace-nowrap">
+                  <thead className="bg-gray-50 border-b border-gray-100">
+                    <tr>
+                      <th className="text-left px-4 py-3 text-gray-600 font-medium">申込日時</th>
+                      <th className="text-left px-4 py-3 text-gray-600 font-medium">氏名</th>
+                      <th className="text-left px-4 py-3 text-gray-600 font-medium">メール</th>
+                      <th className="text-left px-4 py-3 text-gray-600 font-medium">電話</th>
+                      <th className="text-left px-4 py-3 text-gray-600 font-medium">日程</th>
+                      <th className="text-left px-4 py-3 text-gray-600 font-medium">支払方法</th>
+                      <th className="text-left px-4 py-3 text-gray-600 font-medium">ステータス</th>
+                      <th className="text-left px-4 py-3 text-gray-600 font-medium">アクション</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {applications.map((app) => (
+                      <tr key={app.rowIndex} className="border-b border-gray-50 hover:bg-gray-50">
+                        <td className="px-4 py-3 text-gray-500">{app.createdAt}</td>
+                        <td className="px-4 py-3 font-medium text-gray-900">{app.name}</td>
+                        <td className="px-4 py-3 text-gray-600">{app.email}</td>
+                        <td className="px-4 py-3 text-gray-600">{app.phone}</td>
+                        <td className="px-4 py-3 text-gray-600">{DATE_LABELS[app.date] ?? app.date}</td>
+                        <td className="px-4 py-3 text-gray-600">{app.paymentMethod}</td>
+                        <td className="px-4 py-3">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColor(app.status)}`}>
+                            {app.status}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3"><ConfirmButton app={app} /></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+
+            {/* スマホ: カード */}
+            <div className="md:hidden space-y-3">
+              {applications.map((app) => (
+                <div key={app.rowIndex} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <p className="font-semibold text-gray-900">{app.name}</p>
+                      <p className="text-xs text-gray-400 mt-0.5">{app.createdAt}</p>
+                    </div>
+                    <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${statusColor(app.status)}`}>
+                      {app.status}
+                    </span>
+                  </div>
+                  <div className="space-y-1 text-sm text-gray-600 mb-4">
+                    <p>{app.email}</p>
+                    <p>{app.phone}</p>
+                    <div className="flex gap-3">
+                      <span className="text-gray-400">日程</span>
+                      <span>{DATE_LABELS[app.date] ?? app.date}</span>
+                    </div>
+                    <div className="flex gap-3">
+                      <span className="text-gray-400">支払</span>
+                      <span>{app.paymentMethod}</span>
+                    </div>
+                  </div>
+                  <ConfirmButton app={app} />
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </div>
