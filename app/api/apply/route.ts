@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
       amount: 200000,
       currency: "jpy",
       customer: customer.id,
+      description: "PRODUCT AI CAMP 参加費",
       metadata: { name, date },
       automatic_payment_methods: { enabled: true, allow_redirects: "never" },
     });
