@@ -119,14 +119,6 @@ export async function sendApplyClientMailBank(data: BankApplyMailData) {
       </a>
     </div>
 
-    <div style="background:#06c755;border-radius:12px;padding:20px;text-align:center;margin-bottom:24px;">
-      <p style="color:white;font-weight:bold;font-size:15px;margin:0 0 12px;">📣 LINEで当日の情報をお届けします</p>
-      <a href="https://aicamp.gokindler.com/line/open/cskkmLgwdrhk"
-         style="display:inline-block;background:white;color:#06c755;text-decoration:none;padding:12px 32px;border-radius:8px;font-weight:bold;font-size:15px;">
-        LINEを追加する →
-      </a>
-    </div>
-
     <hr style="border:none;border-top:1px solid #e5e7eb;margin:0 0 20px;"/>
     <h3 style="font-size:14px;color:#374151;margin:0 0 12px;">【お申し込み内容】</h3>
     <table style="width:100%;border-collapse:collapse;font-size:13px;">
