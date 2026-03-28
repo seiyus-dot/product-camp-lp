@@ -14,11 +14,11 @@ export async function POST(req: NextRequest) {
       paymentId: "",
     });
 
-    // メール送信（失敗しても申込は成立）
-    Promise.all([
+    // メール送信
+    await Promise.all([
       sendApplyClientMailBank({ name, email, phone, address, date }),
       sendApplyNotifyMailBank({ name, email, phone, address, date }),
-    ]).catch((e) => console.error("bank mail error:", e));
+    ]);
 
     return NextResponse.json({ ok: true });
   } catch (error) {
