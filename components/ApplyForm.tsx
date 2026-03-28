@@ -60,6 +60,7 @@ function FormInner() {
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
+  const [serverError, setServerError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [cardComplete, setCardComplete] = useState(false);
@@ -88,6 +89,7 @@ function FormInner() {
     e.preventDefault();
     if (!validate() || !stripe || !elements) return;
 
+    setServerError("");
     setLoading(true);
     try {
       if (form.paymentMethod === "bank") {
@@ -157,7 +159,11 @@ function FormInner() {
       setSubmitted(true);
     } catch (err) {
       const message = err instanceof Error ? err.message : "エラーが発生しました";
-      setErrors((prev) => ({ ...prev, card: message }));
+      if (form.paymentMethod === "card") {
+        setErrors((prev) => ({ ...prev, card: message }));
+      } else {
+        setServerError(message);
+      }
     } finally {
       setLoading(false);
     }
@@ -331,6 +337,12 @@ function FormInner() {
               )}
             </div>
           </div>
+
+          {serverError && (
+            <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700">
+              {serverError}
+            </div>
+          )}
 
           <div className="pt-2">
             <button
