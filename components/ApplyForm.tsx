@@ -118,6 +118,20 @@ function FormInner() {
 
       if (stripeError) throw new Error(toJapaneseError(stripeError.code, stripeError.message ?? "決済中にエラーが発生しました"));
 
+      // 決済成功後にメール送信（失敗しても申込は成立）
+      fetch("/api/apply-notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          address: form.address,
+          date: form.date,
+          paymentIntentId: data.paymentIntentId,
+        }),
+      }).catch(() => {/* メール失敗はサイレント */});
+
       setSubmitted(true);
     } catch (err) {
       const message = err instanceof Error ? err.message : "エラーが発生しました";

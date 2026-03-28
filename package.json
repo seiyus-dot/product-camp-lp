@@ -11,7 +11,9 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^6.0.0",
     "@stripe/stripe-js": "^9.0.0",
+    "@types/nodemailer": "^7.0.11",
     "next": "16.1.6",
+    "nodemailer": "^8.0.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "stripe": "^21.0.1"
