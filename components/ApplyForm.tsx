@@ -116,7 +116,7 @@ function FormInner() {
         },
       });
 
-      if (stripeError) throw new Error(toJapaneseError(stripeError.code, stripeError.message));
+      if (stripeError) throw new Error(toJapaneseError(stripeError.code, stripeError.message ?? "決済中にエラーが発生しました"));
 
       setSubmitted(true);
     } catch (err) {
