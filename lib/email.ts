@@ -111,6 +111,14 @@ export async function sendApplyClientMailBank(data: BankApplyMailData) {
       </table>
     </div>
 
+    <div style="text-align:center;margin-bottom:24px;">
+      <p style="font-size:14px;color:#374151;margin:0 0 12px;">振込が完了しましたら、下のボタンを押してお知らせください。</p>
+      <a href="https://product-camp-lp.vercel.app/transfer-done?email=${encodeURIComponent(data.email)}&name=${encodeURIComponent(data.name)}"
+         style="display:inline-block;background:#4f46e5;color:white;text-decoration:none;padding:14px 36px;border-radius:10px;font-weight:bold;font-size:15px;">
+        振込完了を報告する
+      </a>
+    </div>
+
     <div style="background:#06c755;border-radius:12px;padding:20px;text-align:center;margin-bottom:24px;">
       <p style="color:white;font-weight:bold;font-size:15px;margin:0 0 12px;">📣 LINEで当日の情報をお届けします</p>
       <a href="https://aicamp.gokindler.com/line/open/cskkmLgwdrhk"
@@ -195,6 +203,26 @@ export async function sendConfirmMail(data: { name: string; email: string; date:
   <div style="padding:16px 32px;background:#f9fafb;text-align:center;font-size:12px;color:#9ca3af;">
     KINDLER株式会社 | このメールに心当たりがない場合はご連絡ください
   </div>
+</div>`,
+  });
+}
+
+/** 振込完了報告 管理者通知 */
+export async function sendTransferDoneNotifyMail(data: { name: string; email: string }) {
+  const to = process.env.KINDLER_NOTIFY_EMAIL || process.env.GMAIL_USER!;
+  const transporter = createTransport();
+  await transporter.sendMail({
+    from: FROM,
+    to,
+    subject: `【CAMP 振込報告】${data.name} さんが振込完了を報告しました`,
+    html: `
+<div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+  <h2 style="color:#f59e0b;border-bottom:2px solid #f59e0b;padding-bottom:8px;">振込完了の報告がありました</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:14px;">
+    <tr style="background:#f3f4f6;"><td style="padding:10px;border:1px solid #e5e7eb;font-weight:bold;width:160px;">氏名</td><td style="padding:10px;border:1px solid #e5e7eb;">${data.name}</td></tr>
+    <tr><td style="padding:10px;border:1px solid #e5e7eb;font-weight:bold;">メールアドレス</td><td style="padding:10px;border:1px solid #e5e7eb;">${data.email}</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:13px;color:#374151;">銀行口座をご確認の上、<a href="https://product-camp-lp.vercel.app/admin" style="color:#4f46e5;font-weight:bold;">管理ページ</a>から入金確定・確定メール送信をしてください。</p>
 </div>`,
   });
 }
