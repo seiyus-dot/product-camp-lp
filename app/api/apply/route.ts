@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     });
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 200000,
+      amount: Number(process.env.PRODUCT_AI_CAMP_AMOUNT ?? 200000),
       currency: "jpy",
       customer: customer.id,
       description: "PRODUCT AI CAMP 参加費",
