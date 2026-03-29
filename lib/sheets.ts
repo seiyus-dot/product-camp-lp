@@ -21,6 +21,7 @@ export async function appendCampRow(data: {
   paymentMethod: "card" | "bank";
   status: string;
   paymentId: string;
+  contractUrl?: string;
 }) {
   const auth = getAuth();
   const sheets = google.sheets({ version: "v4", auth });
@@ -28,7 +29,7 @@ export async function appendCampRow(data: {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: process.env.GOOGLE_SHEET_ID,
-    range: `${SHEET}!A:I`,
+    range: `${SHEET}!A:J`,
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values: [[
@@ -41,6 +42,7 @@ export async function appendCampRow(data: {
         data.paymentMethod === "card" ? "クレジットカード" : "銀行振込",
         data.status,
         data.paymentId,
+        data.contractUrl ?? "",
       ]],
     },
   });

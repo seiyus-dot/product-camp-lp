@@ -1,20 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { appendCampRow } from "@/lib/sheets";
 import { sendApplyClientMailBank, sendApplyNotifyMailBank } from "@/lib/email";
+import { createContractDoc } from "@/lib/docs";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { name, email, phone, address, date } = body;
 
+    // 契約書を自動生成
+    const contractUrl = await createContractDoc({ name, address }).catch((e) => {
+      console.error("contract doc error:", e);
+      return "";
+    });
+
     await appendCampRow({
       name, email, phone, address, date,
       paymentMethod: "bank",
       status: "入金待ち",
       paymentId: "",
+      contractUrl,
     });
 
-    // メール送信
     await Promise.all([
       sendApplyClientMailBank({ name, email, phone, address, date }),
       sendApplyNotifyMailBank({ name, email, phone, address, date }),
