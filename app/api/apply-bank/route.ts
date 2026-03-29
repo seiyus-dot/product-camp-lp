@@ -9,10 +9,13 @@ export async function POST(req: NextRequest) {
     const { name, email, phone, address, date } = body;
 
     // 契約書を自動生成
-    const contractUrl = await createContractDoc({ name, address }).catch((e) => {
-      console.error("contract doc error:", e);
-      return "";
-    });
+    let contractUrl = "";
+    try {
+      contractUrl = await createContractDoc({ name, address });
+      console.log("contract doc created:", contractUrl);
+    } catch (e) {
+      console.error("contract doc error:", JSON.stringify(e, Object.getOwnPropertyNames(e as object)));
+    }
 
     await appendCampRow({
       name, email, phone, address, date,
